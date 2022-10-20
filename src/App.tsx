@@ -1,4 +1,4 @@
-import React, {type PropsWithChildren} from 'react';
+import * as React from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -8,7 +8,6 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
 import {
   Colors,
   DebugInstructions,
@@ -17,12 +16,14 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string;
-  }>
-> = ({children, title}) => {
+type SectionProps = {
+  children: React.ReactNode;
+  title: string;
+};
+
+const Section = ({children, title}: SectionProps) => {
   const isDarkMode = useColorScheme() === 'dark';
+
   return (
     <View style={styles.sectionContainer}>
       <Text
