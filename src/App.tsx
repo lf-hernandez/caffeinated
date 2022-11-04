@@ -1,5 +1,7 @@
 import * as React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import IsItCoffeeTime from './components/IsItCoffeTIme';
+import CurrentTime from './components/CurrentTime';
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -13,30 +15,11 @@ const styles = StyleSheet.create({
 });
 
 const App = () => {
-  const [currentTime] = React.useState<Date>(new Date());
-
-  function isItCoffeeTime() {
-    if (
-      (currentTime.getHours() >= 8 && currentTime.getHours() <= 9) ||
-      (currentTime.getHours() >= 12 && currentTime.getHours() <= 13) ||
-      currentTime.getTime() >= currentTime.setHours(17, 30)
-    ) {
-      return false;
-    }
-    return true;
-  }
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        <Text>
-          Time:{' '}
-          {currentTime.toLocaleString('en-us', {
-            hour: 'numeric',
-            minute: '2-digit',
-          })}
-        </Text>
-        <Text>Is it coffee time? {isItCoffeeTime() ? 'Yes' : 'No'}</Text>
+        <CurrentTime />
+        <IsItCoffeeTime />
       </ScrollView>
     </SafeAreaView>
   );
